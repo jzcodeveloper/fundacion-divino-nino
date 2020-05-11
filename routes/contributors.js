@@ -8,7 +8,7 @@ const { getMe } = require("../controllers/auth");
 const {
   login,
   getContributors,
-  getHistory
+  getHistory,
 } = require("../controllers/contributor");
 
 const Contributor = require("../models/Contributor");
@@ -32,7 +32,9 @@ router.get(
 // @methods   GET
 // @route     /api/contributors/me
 // @access    Contributor
-router.get("/me", protect, getMe);
+router.get("/me", protect, (req, res, next) => {
+  console.log(req);
+});
 
 // @methods   GET
 // @route     /api/contributors/me/history

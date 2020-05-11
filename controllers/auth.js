@@ -7,11 +7,7 @@ const User = require("../models/User");
 // @route     GET /api/users/me
 // @access    Private
 exports.getMe = asyncHandler(async (req, res, next) => {
-  console.log("getMe");
-
   const user = await User.findById(req.user._id);
-
-  console.log(user);
 
   res.status(200).json({ success: true, data: user });
 });
