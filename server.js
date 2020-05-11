@@ -51,9 +51,12 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Enforces HTTPS
-/* if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
-} */
+}
+
+// Use routes
+app.use("/api", require("./routes"));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
@@ -64,9 +67,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"))
   );
 }
-
-// Use routes
-app.use("/api", require("./routes"));
 
 // Central error handling
 app.use(errorHandler);
