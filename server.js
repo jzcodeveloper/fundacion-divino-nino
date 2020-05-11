@@ -28,7 +28,7 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS
-app.use(cors());
+/* app.use(cors()); */
 
 // Compresses payload
 app.use(compression());
