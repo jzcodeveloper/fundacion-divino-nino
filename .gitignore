@@ -1,4 +1,5 @@
 node_modules
 package-lock.json
 config/config.env
+config/config.env.env
 _data
