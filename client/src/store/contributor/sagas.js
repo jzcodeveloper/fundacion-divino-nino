@@ -30,6 +30,8 @@ function* getContributor() {
   try {
     const { data } = yield call([axios, axios.get], `/contributors/me`);
 
+    console.log(data);
+
     yield put(actions.getContributorSuccess(data.data));
 
     history.push("/tasks/overview");
@@ -44,7 +46,7 @@ function* fetchHistory({ page, sort }) {
       [axios, axios.get],
       `/contributors/me/history`,
       {
-        params: { page, sort }
+        params: { page, sort },
       }
     );
 
@@ -74,6 +76,6 @@ function* watchFetchHistoryRequest() {
 export default function* contributorSaga() {
   yield all([
     fork(watchLoginContributorRequest),
-    fork(watchFetchHistoryRequest)
+    fork(watchFetchHistoryRequest),
   ]);
 }
