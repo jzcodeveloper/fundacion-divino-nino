@@ -32,9 +32,7 @@ router.get(
 // @methods   GET
 // @route     /api/contributors/me
 // @access    Contributor
-router.get("/me", protect, (req, res, next) => {
-  console.log(req);
-});
+router.get("/me", getMe);
 
 // @methods   GET
 // @route     /api/contributors/me/history
