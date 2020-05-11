@@ -30,8 +30,6 @@ function* getContributor() {
   try {
     const { data } = yield call([axios, axios.get], `/contributors/me`);
 
-    console.log(data);
-
     yield put(actions.getContributorSuccess(data.data));
 
     history.push("/tasks/overview");
