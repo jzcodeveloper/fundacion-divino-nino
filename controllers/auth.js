@@ -9,6 +9,8 @@ const User = require("../models/User");
 exports.getMe = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user._id);
 
+  console.log(user);
+
   res.status(200).json({ success: true, data: user });
 });
 
