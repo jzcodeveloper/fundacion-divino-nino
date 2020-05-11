@@ -108,7 +108,7 @@ class Model {
           const values = Object.values(data);
           const last = values[values.length - 1];
           return this._labels[keys[keys.length - 1]].map((label, index) => {
-            if (isNaN(last)) return label === last ? 1 : 0;
+            if (Number.isNaN(last)) return label === last ? 1 : 0;
             else return index === last ? 1 : 0;
           });
         })
@@ -173,7 +173,7 @@ class Model {
     this._model.layers[0].getWeights()[1].print(); */
 
     // Model should be saved in this line
-    await this._model.save(`file://${file}`);
+    /* await this._model.save(`file://${file}`); */
 
     return training;
   }
@@ -181,7 +181,7 @@ class Model {
   // Testing
   async testModel(model) {
     // Model should be loaded in this line
-    await tf.loadLayersModel(`file://${file}/model.json`);
+    /* await tf.loadLayersModel(`file://${file}/model.json`); */
 
     const { dataset } = model;
 

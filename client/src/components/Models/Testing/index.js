@@ -23,8 +23,6 @@ const Testing = ({ id }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    /* setData([]); */
-
     socket.on("testing", ({ dataset, predictions }) => {
       const labels = Object.values(model.labels);
 
@@ -58,6 +56,8 @@ const Testing = ({ id }) => {
   const onChange = useCallback((file) => setFile(file), []);
 
   const testModel = useCallback((id, formData) => {
+    setData([]);
+
     dispatch(testModelRequest(id, formData));
   }, []);
 

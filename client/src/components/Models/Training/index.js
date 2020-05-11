@@ -28,12 +28,6 @@ const Training = ({ id }) => {
   });
 
   useEffect(() => {
-    /* setData({
-      loss: { labels: [], data: [] },
-      acc: { labels: [], data: [] },
-      logs: [],
-    }); */
-
     socket.on("training", (data) => {
       setData((prev) => ({
         loss: {
@@ -60,6 +54,12 @@ const Training = ({ id }) => {
   }, [divRef]);
 
   const trainModel = useCallback((id, formData) => {
+    setData({
+      loss: { labels: [], data: [] },
+      acc: { labels: [], data: [] },
+      logs: [],
+    });
+
     dispatch(trainModelRequest(id, formData));
   }, []);
 

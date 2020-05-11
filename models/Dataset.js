@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const { mkdir } = require("fs").promises;
-const { rimraf } = require("../utils/files");
 const { generateId, updateActivities } = require("../utils/methods");
 const { createActivity } = require("../utils/dates");
 
