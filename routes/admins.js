@@ -21,7 +21,10 @@ router.post("/login", login);
 // @methods   GET | POST
 // @route     /api/admins/me
 // @access    Admin
-router.route("/me").get(getMe).post(protect, authorize("admin"), updateAdmin);
+router
+  .route("/me")
+  .get(protect, getMe)
+  .post(protect, authorize("admin"), updateAdmin);
 
 // @methods   POST
 // @route     /api/admins/me/password

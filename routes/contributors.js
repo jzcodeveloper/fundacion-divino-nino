@@ -32,7 +32,7 @@ router.get(
 // @methods   GET
 // @route     /api/contributors/me
 // @access    Contributor
-router.get("/me", getMe);
+router.get("/me", protect, getMe);
 
 // @methods   GET
 // @route     /api/contributors/me/history

@@ -28,7 +28,7 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS
-/* app.use(cors()); */
+app.use(cors());
 
 // Compresses payload
 app.use(compression());
@@ -51,9 +51,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Enforces HTTPS
-if (process.env.NODE_ENV === "production") {
+/* if (process.env.NODE_ENV === "production") {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
-}
+} */
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
