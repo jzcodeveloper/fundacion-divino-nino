@@ -1,7 +1,7 @@
 {
-  "short_name": "ML Crowdsourcing Platform",
-  "name": "ML Crowdsourcing Platform",
-  "description": "Crowdsourcing platform to feed machine learning models built with TensorflowJS",
+  "short_name": "Health Information System",
+  "name": "Health Information System",
+  "description": "Health Information System.",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#666666",
