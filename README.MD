@@ -1,8 +1,8 @@
-# ML Crowdsourcing Platform
+# Health Information System
 
 # Description:
 
-Crowdsourcing platform to feed machine learning models built with TensorflowJS
+Health Information System
 
 # This application uses the following technologies:
 
@@ -12,7 +12,6 @@ Crowdsourcing platform to feed machine learning models built with TensorflowJS
 - Nodejs (Back-end Environment)
 - Redux (State management)
 - Workbox (Offline Support)
-- Tensorflow.js (Machine Learning Models)
 
 # This application offers the following features:
 

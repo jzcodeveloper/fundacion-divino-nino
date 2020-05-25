@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import ErrorBoundary from "./components/Common/ErrorBoundary";
-import Navbar from "./containers/Navbar";
+import Navbar from "./components/Navbar";
 import Loading from "./components/UI/Loading";
 import Routes from "./hoc/Routes";
 

@@ -1,6 +1,6 @@
 {
-  "name": "ml-crowdsourcing-platform",
-  "description": "Crowdsourcing platform to feed ML models built with TensorflowJS.",
+  "name": "health-information-system",
+  "description": "Health Information System.",
   "version": "1.0.0",
   "scripts": {
     "start": "node server",
@@ -10,7 +10,6 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build"
   },
   "dependencies": {
-    "@tensorflow/tfjs-node": "^1.7.0",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "compression": "^1.7.4",
