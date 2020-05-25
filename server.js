@@ -10,7 +10,6 @@ const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const hpp = require("hpp");
-const zip = require("express-zip");
 
 const errorHandler = require("./middlewares/error");
 const connectDB = require("./config/db");
@@ -50,11 +49,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// Enforces HTTPS
-if (process.env.NODE_ENV === "production") {
-  app.use(enforce.HTTPS({ trustProtoHeader: true }));
-}
-
 // Use routes
 app.use("/api", require("./routes"));
 
@@ -79,9 +73,6 @@ const server = app.listen(
     `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
   )
 );
-
-// Sockets
-const io = require("./socket").init(server);
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
