@@ -11,7 +11,7 @@ const Logout = () => {
     dispatch(logoutUserRequest());
   }, []);
 
-  return <Redirect to="/login" />;
+  return <Redirect to="/auth/login" />;
 };
 
 Logout.propTypes = {};

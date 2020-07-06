@@ -49,6 +49,11 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+// Enforces HTTPS
+if (process.env.NODE_ENV === "production") {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+}
+
 // Use routes
 app.use("/api", require("./routes"));
 

@@ -59,3 +59,60 @@ export const getMinutes = (ms) => {
 
   return `${m} ${mDisplay}`;
 };
+
+export const date = (date, format) => {
+  const d = new Date(date);
+
+  let month = "" + (d.getUTCMonth() + 1);
+  let day = "" + d.getUTCDate();
+  let year = "" + d.getUTCFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+  if (year.length < 2) year = "000" + year;
+  if (year.length < 3) year = "00" + year;
+  if (year.length < 4) year = "0" + year;
+
+  format = format.replace("yyyy", year);
+  format = format.replace("mm", month);
+  format = format.replace("dd", day);
+
+  return format;
+};
+
+export const time = (date, format) => {
+  const d = new Date(date);
+
+  let hours = "" + d.getHours();
+  let minutes = "" + d.getMinutes();
+
+  if (hours.length < 2) hours = "0" + hours;
+  if (minutes.length < 2) minutes = "0" + minutes;
+
+  format = format.replace("hh", hours);
+  format = format.replace("mm", minutes);
+
+  return format;
+};
+
+export const timeSince = (date, verbose) => {
+  let seconds = Math.floor((new Date() - new Date(date)) / 1000);
+
+  let interval = Math.floor(seconds / 31536000);
+  if (interval > 1) return verbose ? `Hace ${interval} años` : interval + " y";
+
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) return verbose ? `Hace ${interval} meses` : interval + " m";
+
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) return verbose ? `Hace ${interval} días` : interval + " d";
+
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) return verbose ? `Hace ${interval} horas` : interval + " h";
+
+  interval = Math.floor(seconds / 60);
+  if (interval > 1)
+    return verbose ? `Hace ${interval} minutos` : interval + " m";
+
+  return verbose ? `Hace ${Math.floor(seconds)} segundos` : interval + " s";
+};

@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 
-/* app.use("/contributors", require("./contributors")); */
+app.use("/documents", require("./documents"));
+app.use("/users", require("./users"));
 
 module.exports = app;

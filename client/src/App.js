@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import ErrorBoundary from "./components/Common/ErrorBoundary";
-import Navbar from "./components/Navbar";
-import Loading from "./components/UI/Loading";
-import Routes from "./hoc/Routes";
+import { fetchDoctypesRequest } from "./store/doctypes/actions";
+import { selectLoading } from "./store/doctypes/selectors";
+
+import ErrorBoundary from "./components/common/error_boundary";
+import Loading from "./components/common/loading";
+import Navbar from "./components/navbar";
+import Routes from "./hoc/routes";
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const loading = useSelector(selectLoading);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
+    dispatch(fetchDoctypesRequest());
   }, []);
 
   return loading ? (

@@ -4,17 +4,56 @@
   box-sizing: border-box;
   border: none;
   font-family: "Open Sans";
-  letter-spacing: 0.03em;
-  color: #666;
+  letter-spacing: 0.01em;
+  color: #666666;
 }
 
 body {
-  background-color: #eceff1;
+  background-color: #fbfbfb;
+  color: #c2c2c2;
 }
 
 a {
   text-decoration: none;
   color: black;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  height: 30px;
+  padding: 4px 10px;
+  border: 1px solid #d1d8dd;
+  background-color: #fbfbfb;
+  border-radius: 4px;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  outline: 0;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #ced5db;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+input:invalid,
+textarea:invalid,
+select:invalid {
+  border-color: #ff5858;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ffbebe;
+}
+
+textarea {
+  resize: none;
+}
+
+label {
+  display: block;
+  font-size: 0.75em;
+  margin-bottom: 5px;
+  transition: color ease-in-out 0.15s;
 }
 
 @font-face {

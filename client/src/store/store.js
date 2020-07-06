@@ -26,11 +26,11 @@ export const persistor = persistStore(store, {}, () => {
 
   if (!token) return;
 
-  const decoded = jwt(token);
+  /* const decoded = jwt(token);
 
   const valid = decoded.exp * 1000 > Date.now();
 
-  if (!valid) store.dispatch(logoutUserRequest());
+  if (!valid) store.dispatch(logoutUserRequest()); */
 
   setAuthToken(token);
 });

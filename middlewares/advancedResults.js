@@ -1,75 +1,122 @@
-const advancedResults = (model, populate) => async (req, res, next) => {
-  let query;
+const mongoose = require("mongoose");
+const _ = require("lodash");
+
+const advancedResults = () => async (req, res, next) => {
+  let query = null;
+
+  // Get model
+  const model = mongoose.model(req.query.model);
 
   // Copy req.query
-  const reqQuery = { ...req.query };
+  const queryObj = { ...req.query };
 
   // Fields to exclude
-  const removeFields = ["select", "sort", "page", "limit"];
+  const removeFields = ["model", "populate", "select", "sort", "page", "limit"];
 
-  // Loop over removeFields and delete them from reqQuery
-  removeFields.forEach(param => delete reqQuery[param]);
+  // Remove fields from query
+  removeFields.forEach((param) => delete queryObj[param]);
 
-  // Create query string
-  let queryStr = JSON.stringify(reqQuery);
+  // Stringify the query
+  let queryStr = JSON.stringify(queryObj);
 
   // Create operators ($gt, $gte, etc)
-  queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+  queryStr = queryStr.replace(
+    /\b(gt|gte|lt|lte|in|regex)\b/g,
+    (match) => `$${match}`
+  );
+
+  // Parse the query
+  queryStr = JSON.parse(queryStr);
+
+  // Add i options to regex operator
+  for (const key in queryStr) {
+    const keys = Object.keys(queryStr[key]);
+    for (const index in keys) {
+      if (keys[index] === "$regex") queryStr[key]["$options"] = "i";
+    }
+  }
 
   // Finding resource
-  query = model.find(JSON.parse(queryStr));
+  query = model.find(queryStr);
 
-  // Select Fields
+  // Select fields
   if (req.query.select) {
     const fields = req.query.select.split(",").join(" ");
     query = query.select(fields);
   }
 
-  // Sort
-  if (req.query.sort) {
-    const sortBy = req.query.sort.split(",").join(" ");
-    query = query.sort(sortBy);
-  } else {
-    query = query.sort("-createdAt");
-  }
-
   // Pagination
-  const page = parseInt(req.query.page, 10) || 1;
-  const limit = parseInt(req.query.limit, 10) || 10;
+  const page = parseInt(req.query.page, 20) || 1;
+  const limit = parseInt(req.query.limit, 20) || 20;
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
   const total = await model.countDocuments();
 
   query = query.skip(startIndex).limit(limit);
 
-  if (populate) {
-    query = query.populate(populate);
+  // Populate
+  if (req.query.populate) {
+    // eg: fields,permissions.role
+    const fields = req.query.populate.split(",");
+
+    const populations = fields.reduce((acc, val, idx) => {
+      // eg: permissions.role
+      const subfields = val.split(".");
+
+      if (subfields.length === 1) {
+        acc.push({ path: subfields[0] });
+      } else if (subfields.length === 2) {
+        acc.push({ path: subfields[0], populate: { path: subfields[1] } });
+      }
+      return acc;
+    }, []);
+
+    query = query.populate(populations);
   }
 
-  // Executing query
+  // Execute query
+  let results = await query;
 
-  const results = await query;
+  // Sort
+  let sortBy = [];
 
-  /* // Pagination result
+  if (req.query.sort) {
+    sortBy = req.query.sort.split(",");
+  } else {
+    sortBy = ["updated_at desc"];
+  }
+
+  const [keys, orders] = sortBy.reduce(
+    (acc, val) => {
+      acc[0].push(val.split(" ")[0]);
+      acc[1].push(val.split(" ")[1]);
+      return acc;
+    },
+    [[], []]
+  );
+
+  results = _.orderBy(results, keys, orders);
+
+  // Pagination result
   const pagination = {};
 
   if (endIndex < total) {
     pagination.next = {
       page: page + 1,
-      limit
+      limit,
     };
   }
 
   if (startIndex > 0) {
     pagination.prev = {
       page: page - 1,
-      limit
+      limit,
     };
-  } */
+  }
 
   res.advancedResults = {
     success: true,
-    data: { total, page, results }
+    data: { total, page, results, pagination },
   };
 
   next();

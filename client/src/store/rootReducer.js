@@ -2,43 +2,28 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import admin from "./admin/reducer";
-import app from "./app/reducer";
-import task from "./task/reducer";
-import tasks from "./tasks/reducer";
-import modals from "./modals/reducer";
-import models from "./models/reducer";
-import dataset from "./dataset/reducer";
-import datasets from "./datasets/reducer";
-import contributor from "./contributor/reducer";
-import contributors from "./contributors/reducer";
+import doctypes from "./doctypes/reducer";
+import documents from "./documents/reducer";
+import forms from "./forms/reducer";
+import tables from "./tables/reducer";
+import links from "./links/reducer";
+import table_links from "./table_links/reducer";
+import user from "./user/reducer";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [
-    "app",
-    "admin",
-    "contributor",
-    "tasks",
-    "task",
-    "datasets",
-    "dataset",
-    "models",
-  ],
+  whitelist: ["user", "documents"],
 };
 
 const rootReducer = combineReducers({
-  admin,
-  app,
-  task,
-  tasks,
-  modals,
-  models,
-  dataset,
-  datasets,
-  contributor,
-  contributors,
+  doctypes,
+  documents,
+  forms,
+  tables,
+  links,
+  table_links,
+  user,
 });
 
 /* export default rootReducer; */

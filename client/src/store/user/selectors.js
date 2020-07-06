@@ -1,26 +1,21 @@
 import { createSelector } from "reselect";
-import {
-  selectAdmin,
-  selectToken as selectAdminToken,
-  selectAuthenticated as selectAdminAuthenticated,
-} from "../admin/selectors";
-import {
-  selectContributor,
-  selectToken as selectContributorToken,
-  selectAuthenticated as selectContributorAuthenticated,
-} from "../contributor/selectors";
 
-export const selectUser = createSelector(
-  [selectAdmin, selectContributor],
-  (admin, contributor) => (admin ? admin : contributor ? contributor : null)
-);
+export const userState = (state) => state.user;
 
-export const selectToken = createSelector(
-  [selectAdminToken, selectContributorToken],
-  (admin, contributor) => (admin ? admin : contributor ? contributor : null)
+export const selectUser = createSelector([userState], (user) => user.user);
+
+export const selectToken = createSelector([userState], (user) => user.token);
+
+export const selectError = createSelector([userState], (user) => user.error);
+
+export const selectLoading = createSelector(
+  [userState],
+  (user) => user.loading
 );
 
 export const selectAuthenticated = createSelector(
-  [selectAdminAuthenticated, selectContributorAuthenticated],
-  (admin, contributor) => (admin ? admin : contributor ? contributor : null)
+  [userState],
+  (user) => user.authenticated
 );
+
+export const selectUserRole = createSelector([selectUser], (user) => user.role);
