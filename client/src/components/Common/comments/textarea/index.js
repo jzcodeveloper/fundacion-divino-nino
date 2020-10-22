@@ -17,6 +17,7 @@ const TextInput = ({
   onChange,
   onBlur,
   placeholder,
+  ref,
   required,
   rows,
   ...props
@@ -45,6 +46,13 @@ const TextInput = ({
       if (!valid) setValid(true);
     }
   }, [state]);
+
+  /* useEffect(() => {
+    if (!disabled) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [disabled]); */
 
   const onLocalChange = (e) => {
     const value = e.target.value;

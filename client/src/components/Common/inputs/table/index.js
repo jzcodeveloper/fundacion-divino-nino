@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { date } from "../../../../utils/utils";
+import { cloneDeep } from "lodash";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -192,7 +192,7 @@ const TableInput = ({
   }, [state]);
 
   const onLocalChange = (index, name, value) => {
-    const newState = [...state];
+    const newState = cloneDeep(state);
 
     // Works for date, password, text, textarea and link inputs
     newState[index][name] = value;
@@ -237,9 +237,7 @@ const TableInput = ({
         acc[field_name] = val.default === "true" ? true : false;
       } else if (field_type === "Link" || field_type === "Table Link") {
         acc[field_name] = {};
-      } else if (field_type === "Date") {
-        acc[field_name] = val.default ? date(new Date(), "yyyy-mm-dd") : "";
-      } else if (field_type === "Time") {
+      } else if (field_type === "Date" || field_type === "Time") {
         acc[field_name] = val.default ? new Date() : "";
       } else {
         acc[field_name] = val.default;
@@ -260,8 +258,7 @@ const TableInput = ({
     setSelectedItems({});
   };
 
-  const selectItem = (e) => {
-    const { index } = e.currentTarget.dataset;
+  const selectItem = (index) => {
     const newState = { ...selectedItems };
 
     if (newState[index]) {
@@ -293,10 +290,11 @@ const TableInput = ({
         <TableRow>
           <TableHeader>
             {!locked && (
-              <StyledIcon
-                icon={areAllSelected ? "check-square" : "square"}
-                selected={areAllSelected}
-                onClick={selectAllItems}
+              <Input
+                field_name={`check_all`}
+                field_type="Check"
+                doc={{ check_all: areAllSelected }}
+                onChange={selectAllItems}
               />
             )}
           </TableHeader>
@@ -305,40 +303,41 @@ const TableInput = ({
           ))}
         </TableRow>
 
-        {state.length > 0 &&
-          state.map((data, index) => (
-            <TableRow key={index}>
-              <TableColumn>
-                {!locked && (
-                  <StyledIcon
-                    icon={selectedItems[index] ? "check-square" : "square"}
-                    data-index={index}
-                    selected={selectedItems[index]}
-                    onClick={selectItem}
-                  />
-                )}
-              </TableColumn>
-              {doctypeListFields.map((field) => (
-                <TableColumn key={field.field_name}>
-                  <Inputs>
+        {state.length === 0
+          ? null
+          : state.map((data, index) => (
+              <TableRow key={index}>
+                <TableColumn>
+                  {!locked && (
                     <Input
-                      doc={state[index]}
-                      idx={index}
-                      onChange={onLocalChange}
-                      {...field}
+                      field_name={`check_${index}`}
+                      field_type="Check"
+                      doc={{ [`check_${index}`]: selectedItems[index] }}
+                      onChange={selectItem.bind(null, index)}
                     />
-                  </Inputs>
+                  )}
                 </TableColumn>
-              ))}
-            </TableRow>
-          ))}
+                {doctypeListFields.map((field) => (
+                  <TableColumn key={field.field_name}>
+                    <Inputs>
+                      <Input
+                        doc={data}
+                        idx={index}
+                        onChange={onLocalChange}
+                        {...field}
+                      />
+                    </Inputs>
+                  </TableColumn>
+                ))}
+              </TableRow>
+            ))}
 
         {!locked && (
           <Buttons>
             <Button onClick={addRow}>Agregar</Button>
 
             {selectedItemsKeys.length > 0 && (
-              <Button bgColor="#e21515" color="#ffffff" onClick={deleteRows}>
+              <Button bgColor="#da003e" color="#ffffff" onClick={deleteRows}>
                 Eliminar
               </Button>
             )}

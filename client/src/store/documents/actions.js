@@ -68,8 +68,13 @@ export const setListLimit = (payload) => ({
   payload,
 });
 
-export const setListSort = (payload) => ({
-  type: types.SET_LIST_SORT,
+export const setListSortOrder = (payload) => ({
+  type: types.SET_LIST_SORT_ORDER,
+  payload,
+});
+
+export const setListSortField = (payload) => ({
+  type: types.SET_LIST_SORT_FIELD,
   payload,
 });
 

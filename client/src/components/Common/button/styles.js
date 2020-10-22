@@ -9,6 +9,7 @@ export const Button = styled.button`
   color: ${(props) => props.color};
   cursor: pointer;
   transition: box-shadow 0.25s;
+  outline: 0;
 
   :hover {
     box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.15);

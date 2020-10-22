@@ -1,15 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-
-import {
-  fetchLinkDocumentsRequest,
-  updateLinkDocumentData,
-} from "../../../../store/links/actions";
+import axios from "../../../../store/axios";
 
 import { selectDoctype } from "../../../../store/doctypes/selectors";
-
-import { selectLinkDocument } from "../../../../store/links/selectors";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -74,7 +68,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
   margin-right: 10px;
 
   path {
-    color: #5e64ff;
+    color: #0057a6;
   }
 `;
 
@@ -82,7 +76,7 @@ const Create = styled.span`
   display: flex;
   align-items: center;
   font-size: 0.75rem;
-  color: #5e64ff;
+  color: #0057a6;
   border-radius: 0 0 4px 4px;
 `;
 
@@ -109,24 +103,22 @@ const LinkInput = ({
   const [showOptions, setShowOptions] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
+  const [documents, setDocuments] = useState([]);
 
-  const dispatch = useDispatch();
   const inputRef = useRef();
   const doctypeData = useSelector(selectDoctype(model));
-  const documentData = useSelector(selectLinkDocument({ model }));
 
   useEffect(() => {
-    const query = { model };
-    dispatch(fetchLinkDocumentsRequest(query));
+    fetchLinkDocumentsRequest();
   }, []);
 
   // Set default value if empty
   useEffect(() => {
-    if (documentData.length > 0 && props.default && state._id === null) {
-      const found = documentData.find((doc) => doc._id === props.default);
+    if (documents.length > 0 && props.default && state._id === null) {
+      const found = documents.find((doc) => doc._id === props.default);
       onChange(idx, field_name, found);
     }
-  }, [documentData]);
+  }, [documents]);
 
   // Set filtered data whenever state[title] changes
   useEffect(() => {
@@ -153,11 +145,11 @@ const LinkInput = ({
       }
     }
 
-    const filtered = documentData.filter(
+    const filtered = documents.filter(
       (doc) => doc[title].toLowerCase().indexOf(state[title].toLowerCase()) > -1
     );
-    setFilteredData(filtered);
 
+    setFilteredData(filtered);
     setValid(valid);
   }, [state[title]]);
 
@@ -180,7 +172,7 @@ const LinkInput = ({
 
   // Set new filtered data whenever the input receives focus
   const onFocus = (e) => {
-    const filtered = documentData.filter(
+    const filtered = documents.filter(
       (doc) => doc[title].toLowerCase().indexOf(state[title].toLowerCase()) > -1
     );
     setFilteredData(filtered);
@@ -198,8 +190,7 @@ const LinkInput = ({
   };
 
   const onSubmit = (state) => {
-    const query = { model };
-    dispatch(fetchLinkDocumentsRequest(query));
+    fetchLinkDocumentsRequest();
     onChange(idx, field_name, state);
   };
 
@@ -214,6 +205,13 @@ const LinkInput = ({
 
   const hideModalForm = () => {
     setShowModal(false);
+  };
+
+  const fetchLinkDocumentsRequest = async () => {
+    const endpoint = "/documents";
+    const options = { params: { model, limit: 1000, sort: `${title} asc` } };
+    const res = await axios.get(endpoint, options);
+    setDocuments(res.data.data.results);
   };
 
   return (

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { date } from "../../../../utils/utils";
+import moment from "moment";
+import { checkValidity } from "../../../../utils/utils";
 
 const Container = styled.div`
   grid-column: ${(props) => props.columns};
@@ -23,8 +24,8 @@ const DateInput = ({
   field_name,
   label,
   onChange,
-  required,
   read_only,
+  required,
   set_only_once,
   ...props
 }) => {
@@ -35,8 +36,10 @@ const DateInput = ({
   const [locked, setLocked] = useState(false);
 
   useEffect(() => {
-    const value = date(doc[field_name], "yyyy-mm-dd");
-    const defaultValue = props.default ? date(new Date(), "yyyy-mm-dd") : "";
+    const value = moment(doc[field_name]).format("yyyy-MM-DD");
+    const defaultValue = props.default
+      ? moment(new Date()).format("yyyy-MM-DD")
+      : "";
 
     if (set_only_once && value !== defaultValue && !locked) {
       setLocked(true);
@@ -48,12 +51,13 @@ const DateInput = ({
   }, [doc[field_name]]);
 
   const onLocalChange = (e) => {
-    const value = date(e.target.value, "yyyy-mm-dd");
-    setState(value);
+    setState(e.target.value);
   };
 
-  const onBlur = (e) => {
-    onChange(idx, field_name, state);
+  const onBlur = () => {
+    const [year, month, day] = state.split("-");
+    const date = new Date().setFullYear(year, month - 1, day);
+    onChange(idx, field_name, new Date(date));
   };
 
   return (

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import axios from "../../../store/axios";
-import { date } from "../../../utils/utils";
 
 import {
   selectDoctype,
@@ -59,6 +58,11 @@ const Column = styled.div`
   }
 `;
 
+const Buttons = styled.div`
+  padding-top: 20px;
+  display: grid;
+`;
+
 const ModalForm = ({ label, model, close, onSubmit }) => {
   const formRef = useRef();
   const doctypeData = useSelector(selectDoctype(model));
@@ -91,9 +95,7 @@ const ModalForm = ({ label, model, close, onSubmit }) => {
         acc[field_name] = val.default === "true" ? true : false;
       } else if (field_type === "Link" || field_type === "Table Link") {
         acc[field_name] = {};
-      } else if (field_type === "Date") {
-        acc[field_name] = val.default ? date(new Date(), "yyyy-mm-dd") : "";
-      } else if (field_type === "Time") {
+      } else if (field_type === "Date" || field_type === "Time") {
         acc[field_name] = val.default ? new Date() : "";
       } else if (field_type === "Table") {
         acc[field_name] = [];
@@ -139,13 +141,6 @@ const ModalForm = ({ label, model, close, onSubmit }) => {
           <Container>
             <TopSection>
               <Heading>Nuevo {label}</Heading>
-              <Button
-                bgColor="#4343e2"
-                color="#ffffff"
-                onClick={submitDocument}
-              >
-                Crear
-              </Button>
             </TopSection>
 
             <MainSection>
@@ -161,6 +156,16 @@ const ModalForm = ({ label, model, close, onSubmit }) => {
                     />
                   ))}
                 </Column>
+                <Buttons>
+                  <Button
+                    bgColor="#0057a6"
+                    color="#fff"
+                    style={{ margin: 0 }}
+                    onClick={submitDocument}
+                  >
+                    Crear
+                  </Button>
+                </Buttons>
               </Form>
             </MainSection>
           </Container>

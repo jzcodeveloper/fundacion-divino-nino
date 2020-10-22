@@ -38,14 +38,16 @@ export const Icon = styled.img`
   cursor: pointer;
 `;
 
-export const CurrentUser = styled.div`
+export const User = styled.div`
+  position: relative;
   padding: 8px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 
-  :hover {
+  :hover,
+  :focus {
     background-color: #dfe5ef;
   }
 `;
@@ -58,14 +60,15 @@ export const Avatar = styled.img`
   border-radius: 50%;
 `;
 
-export const User = styled.span`
+export const Name = styled.span`
   font-size: 0.75em;
   font-weight: bold;
   color: #888888;
   margin-left: 5px;
   transition: color 0.25s;
 
-  ${CurrentUser}:hover & {
+  ${User}:hover &,
+  ${User}:focus & {
     color: #444444;
   }
 `;
@@ -90,4 +93,35 @@ export const StyledIcon = styled(FontAwesomeIcon)`
 
 export const Span = styled.span`
   font-size: 0.8em;
+`;
+
+export const Options = styled.div`
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 200px;
+  border: 1px solid #d1d8dd;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
+  background-color: #fbfbfb;
+  transform-origin: top right;
+`;
+
+export const Option = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding: 8px 12px;
+  font-size: 0.75em;
+  min-height: 50px;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  :hover {
+    color: #36414c;
+    background-color: #f0f4f7;
+  }
 `;

@@ -24,9 +24,16 @@ export const selectLimit = (doctype) =>
     documents[doctype] ? documents[doctype].limit : 20
   );
 
-export const selectSort = (doctype) =>
+export const selectSortField = (doctype) =>
   createSelector([selectAllDocuments], (documents) =>
-    documents[doctype] ? documents[doctype].sort : "updated_at desc"
+    documents[doctype]
+      ? documents[doctype].sort_field
+      : { field_name: "updated_at", label: "Actualizado El" }
+  );
+
+export const selectSortOrder = (doctype) =>
+  createSelector([selectAllDocuments], (documents) =>
+    documents[doctype] ? documents[doctype].sort_order : "asc"
   );
 
 export const selectDocuments = (doctype) =>

@@ -1,7 +1,7 @@
 import { types } from "./types";
 import produce from "immer";
 
-import { initialState } from "./model";
+import { initialState, defaultConfig } from "./model";
 
 export default (state = initialState, action) =>
   produce(state, (draft) => {
@@ -15,7 +15,11 @@ export default (state = initialState, action) =>
       case types.FETCH_DOCUMENTS_SUCCESS: {
         const { model, data } = payload;
         if (draft.documents[model] === undefined) {
-          draft.documents[model] = { limit: 20, sort: "updated_at desc" };
+          draft.documents[model] = {
+            limit: 20,
+            sort_field: { field_name: "updated_at", label: "Actualizado El" },
+            sort_order: "asc",
+          };
         }
         draft.documents[model].results = data.results;
         draft.loading = false;
@@ -34,9 +38,15 @@ export default (state = initialState, action) =>
         break;
       }
 
-      case types.SET_LIST_SORT: {
-        const { model, sort } = payload;
-        draft.documents[model].sort = sort;
+      case types.SET_LIST_SORT_FIELD: {
+        const { model, sort_field } = payload;
+        draft.documents[model].sort_field = sort_field;
+        break;
+      }
+
+      case types.SET_LIST_SORT_ORDER: {
+        const { model, sort_order } = payload;
+        draft.documents[model].sort_order = sort_order;
         break;
       }
 

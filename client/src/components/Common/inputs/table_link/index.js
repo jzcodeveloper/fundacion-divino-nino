@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import axios from "../../../../store/axios";
 import { isEqual } from "lodash";
 
 import {
@@ -115,7 +116,6 @@ const TableLinkInput = ({
   const [firstRender, setFirstRender] = useState(true);
   const [locked, setLocked] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
-  const [firstLoad, setFirstLoad] = useState(true);
   const [filteredData, setFilteredData] = useState([]);
 
   const dispatch = useDispatch();
@@ -127,6 +127,7 @@ const TableLinkInput = ({
       parent_model,
       parent_name: parentName,
       populate,
+      sort: `${populate}.${title} asc`,
     })
   );
 
@@ -158,6 +159,7 @@ const TableLinkInput = ({
     const filtered = documentData.filter(
       (doc) => doc[title].toLowerCase().indexOf(state[title].toLowerCase()) > -1
     );
+
     setFilteredData(filtered);
     setValid(valid);
   }, [state[title]]);
@@ -189,12 +191,10 @@ const TableLinkInput = ({
         parent_model,
         parent_name: doc[parent_name].name,
         populate,
+        sort: `${populate}.${title} asc`,
       };
 
       dispatch(fetchTableLinkDocumentsRequest(query));
-    } else {
-      const value = { _id: null, [title]: "" };
-      onChange(idx, field_name, value);
     }
   }, [doc[parent_name]]);
 
@@ -221,6 +221,13 @@ const TableLinkInput = ({
     const value = filteredData[e.target.dataset.index];
     onChange(idx, field_name, value);
   };
+
+  /* const fetchTableLinkDocumentsRequest = async () => {
+    const endpoint = "/documents";
+    const options = { params: { model, parent_model, populate, limit: 1000 } };
+    const res = await axios.get(endpoint, options);
+    setDocuments(res.data.data.results);
+  }; */
 
   return (
     <Container columns={columns}>

@@ -6,7 +6,6 @@ import { selectLoading } from "./store/doctypes/selectors";
 
 import ErrorBoundary from "./components/common/error_boundary";
 import Loading from "./components/common/loading";
-import Navbar from "./components/navbar";
 import Routes from "./hoc/routes";
 
 const App = () => {
@@ -20,12 +19,9 @@ const App = () => {
   return loading ? (
     <Loading />
   ) : (
-    <>
-      <Navbar />
-      <ErrorBoundary>
-        <Routes />
-      </ErrorBoundary>
-    </>
+    <ErrorBoundary>
+      <Routes />
+    </ErrorBoundary>
   );
 };
 

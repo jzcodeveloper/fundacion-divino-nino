@@ -6,6 +6,7 @@
   font-family: "Open Sans";
   letter-spacing: 0.01em;
   color: #666666;
+  outline: 0;
 }
 
 body {
@@ -28,7 +29,6 @@ select {
   background-color: #fbfbfb;
   border-radius: 4px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  outline: 0;
 }
 
 input:focus,

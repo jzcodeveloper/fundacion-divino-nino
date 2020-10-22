@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { timeSince } from "../../../../utils/utils";
+import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { selectUser } from "../../../../store/user/selectors";
@@ -63,18 +63,13 @@ const Comment = ({
   const user = useSelector(selectUser);
 
   const [state, setState] = useState({ comment });
-  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     setState({ comment });
   }, [comment]);
 
-  const onLocalChange = (name, value) => {
-    onEdit(index, value);
-  };
-
-  const editComment = () => {
-    setEditing(true);
+  const onLocalChange = (e) => {
+    setState({ comment: e.target.value });
   };
 
   const onLocalDelete = () => {
@@ -82,7 +77,7 @@ const Comment = ({
   };
 
   const onBlur = () => {
-    setEditing(false);
+    onEdit(index, state);
   };
 
   return (
@@ -92,12 +87,11 @@ const Comment = ({
           <Icon icon="comment" />
           <Span>
             {created_by === user.email ? "Tú" : created_by} –{" "}
-            {timeSince(created_at, true)}
+            {moment(created_at).locale("es").fromNow()}
           </Span>
         </Flex>
         {created_by === user.email && (
           <Flex>
-            <Button onClick={editComment}>Modificar</Button>
             <Icon icon="times" onClick={onLocalDelete} />
           </Flex>
         )}
@@ -108,9 +102,8 @@ const Comment = ({
           doc={state}
           name="comment"
           onChange={onLocalChange}
-          disabled={!editing}
           onBlur={onBlur}
-          rows={2}
+          rows={3}
         />
       </Main>
     </Container>

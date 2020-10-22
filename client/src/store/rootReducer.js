@@ -6,7 +6,6 @@ import doctypes from "./doctypes/reducer";
 import documents from "./documents/reducer";
 import forms from "./forms/reducer";
 import tables from "./tables/reducer";
-import links from "./links/reducer";
 import table_links from "./table_links/reducer";
 import user from "./user/reducer";
 
@@ -21,7 +20,6 @@ const rootReducer = combineReducers({
   documents,
   forms,
   tables,
-  links,
   table_links,
   user,
 });

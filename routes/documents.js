@@ -6,7 +6,6 @@ const advancedResults = require("../middlewares/advancedResults");
 const { protect } = require("../middlewares/auth");
 const {
   fetchDocuments,
-  createDocument,
   createDocuments,
   updateDocuments,
   deleteDocuments,

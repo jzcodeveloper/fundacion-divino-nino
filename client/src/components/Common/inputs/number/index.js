@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import { checkValidity } from "../../../../utils/utils";
 
 const Container = styled.div`
   grid-column: ${(props) => props.columns};
@@ -23,8 +24,8 @@ const NumberInput = ({
   label,
   onChange,
   precision,
-  required,
   read_only,
+  required,
   set_only_once,
   ...props
 }) => {
@@ -32,6 +33,7 @@ const NumberInput = ({
   const [state, setState] = useState(0);
   const [valid, setValid] = useState(true);
   const [locked, setLocked] = useState(false);
+  const [validators] = useState({ ...props });
 
   useEffect(() => {
     const value = doc[field_name];
@@ -46,6 +48,15 @@ const NumberInput = ({
       setState(value);
     }
   }, [doc[field_name]]);
+
+  useEffect(() => {
+    const [isValid, errorMessages] = checkValidity(state, validators);
+
+    if (isValid !== valid) {
+      inputRef.current.setCustomValidity(errorMessages.join("\n"));
+      setValid(isValid);
+    }
+  }, [state]);
 
   const onLocalChange = (e) => {
     const value = e.target.value ? Number(e.target.value) : 0;

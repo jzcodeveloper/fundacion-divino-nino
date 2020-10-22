@@ -1,303 +1,303 @@
 [
   {
     "item_name": "Ácido Úrico",
-    "total": 1.2,
+    "price": 1.2,
     "practitioner_payroll": 0.24,
     "foundation_payroll": 0.96,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Amilasa",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Bilirrubina Total Y Fraccionada",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Calcio",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Colesterol",
-    "total": 1.2,
+    "price": 1.2,
     "practitioner_payroll": 0.24,
     "foundation_payroll": 0.96,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Creatinina",
-    "total": 1,
+    "price": 1,
     "practitioner_payroll": 0.2,
     "foundation_payroll": 0.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Cryptosporidium en Heces",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Depuracion de Creatinina 24 horas",
-    "total": 3.75,
+    "price": 3.75,
     "practitioner_payroll": 0.75,
     "foundation_payroll": 3,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Espermatograma",
-    "total": 5.5,
+    "price": 5.5,
     "practitioner_payroll": 1.1,
     "foundation_payroll": 4.4,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Factor Reumatoideo (Ratest)",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Fenomeno Le (SLE)",
-    "total": 1.5,
+    "price": 1.5,
     "practitioner_payroll": 0.3,
     "foundation_payroll": 1.2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Fibrinógeno",
-    "total": 1.5,
+    "price": 1.5,
     "practitioner_payroll": 0.3,
     "foundation_payroll": 1.2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Fosfatasa Alcalina",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Glicemia Basal",
-    "total": 1,
+    "price": 1,
     "practitioner_payroll": 0.2,
     "foundation_payroll": 0.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Glicemia Post-Pandrial",
-    "total": 1,
+    "price": 1,
     "practitioner_payroll": 0.2,
     "foundation_payroll": 0.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Grupo Sanguíneo Y RH",
-    "total": 1.5,
+    "price": 1.5,
     "practitioner_payroll": 0.3,
     "foundation_payroll": 1.2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Heces",
-    "total": 1,
+    "price": 1,
     "practitioner_payroll": 0.2,
     "foundation_payroll": 0.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Hematología Completa",
-    "total": 1.5,
+    "price": 1.5,
     "practitioner_payroll": 0.3,
     "foundation_payroll": 1.2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "HIV",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "LDH Deshidrogenasa Láctica",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Leucocitos Fecales X Diferencial",
-    "total": 1.5,
+    "price": 1.5,
     "practitioner_payroll": 0.3,
     "foundation_payroll": 1.2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Monotest (Mononucleosis)",
-    "total": 1.5,
+    "price": 1.5,
     "practitioner_payroll": 0.3,
     "foundation_payroll": 1.2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Orina",
-    "total": 1,
+    "price": 1,
     "practitioner_payroll": 0.2,
     "foundation_payroll": 0.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Perfil 20",
-    "total": 20,
+    "price": 20,
     "practitioner_payroll": 4,
     "foundation_payroll": 16,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Perfil Lipídico",
-    "total": 3.75,
+    "price": 3.75,
     "practitioner_payroll": 0.75,
     "foundation_payroll": 3,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "PH Y Azúcares Reductores en Heces",
-    "total": 1.5,
+    "price": 1.5,
     "practitioner_payroll": 0.3,
     "foundation_payroll": 1.2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Proteína 24 Horas (Proteinuria)",
-    "total": 2.75,
+    "price": 2.75,
     "practitioner_payroll": 0.55,
     "foundation_payroll": 2.2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Proteograma (Proteínas Totales - Albumina)",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Proteína C Reactiva",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Pruebas de Embarazo (BHCG)",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Relación Calcio-Creatinina Ácido Úrico-Creatinina en Orina",
-    "total": 3.75,
+    "price": 3.75,
     "practitioner_payroll": 0.75,
     "foundation_payroll": 3,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Rutina (HC, GL, UR, CR, COL, TRI, AU, Y Orina)",
-    "total": 8,
+    "price": 8,
     "practitioner_payroll": 1.6,
     "foundation_payroll": 6.4,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Sangre Oculta En Heces (SOH)",
-    "total": 1,
+    "price": 1,
     "practitioner_payroll": 0.2,
     "foundation_payroll": 0.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Sudan III (Heces)",
-    "total": 1,
+    "price": 1,
     "practitioner_payroll": 0.2,
     "foundation_payroll": 0.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "TGO-Transaminansas Oxilacética (AST)",
-    "total": 1.2,
+    "price": 1.2,
     "practitioner_payroll": 0.24,
     "foundation_payroll": 0.96,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "TGP-Transaminansas Purívica (ALT)",
-    "total": 1.2,
+    "price": 1.2,
     "practitioner_payroll": 0.24,
     "foundation_payroll": 0.96,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Toxoplasmosis",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Toxoplasmosis IGM (Toxo IGM)",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "TP-TPT",
-    "total": 2,
+    "price": 2,
     "practitioner_payroll": 0.4,
     "foundation_payroll": 1.6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Triglicéridos",
-    "total": 1.2,
+    "price": 1.2,
     "practitioner_payroll": 0.24,
     "foundation_payroll": 0.96,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Urea",
-    "total": 1,
+    "price": 1,
     "practitioner_payroll": 0.2,
     "foundation_payroll": 0.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "VDRL",
-    "total": 1.25,
+    "price": 1.25,
     "practitioner_payroll": 0.25,
     "foundation_payroll": 1,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Velocidad de Sedimentación VSG",
-    "total": 1,
+    "price": 1,
     "practitioner_payroll": 0.2,
     "foundation_payroll": 0.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   }
 ]

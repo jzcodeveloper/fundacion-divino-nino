@@ -87,7 +87,7 @@ const CommentsSection = ({ idx, doc, field_name, onChange }) => {
             doc={state}
             name="comment"
             onChange={onLocalChange}
-            rows={4}
+            rows={3}
           />
         </Main>
       </AddComment>

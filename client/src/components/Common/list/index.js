@@ -3,34 +3,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { timeSince } from "../../../utils/utils";
+import moment from "moment";
 
 import {
   selectDoctype,
   selectDoctypeFields,
   selectDoctypeListFields,
+  selectDoctypeSortFields,
   selectDoctypePermissions,
   selectDoctypeSearchFields,
 } from "../../../store/doctypes/selectors";
 
 import {
-  setListSort,
   setListLimit,
+  setListSortOrder,
+  setListSortField,
   resetDocuments,
   fetchDocumentsRequest,
   deleteDocumentsRequest,
 } from "../../../store/documents/actions";
 
 import {
-  selectSort,
   selectLimit,
+  selectSortOrder,
+  selectSortField,
   selectDocuments,
 } from "../../../store/documents/selectors";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import TopSection from "../top_section";
-import Filters from "../filters";
 import Input from "../input";
 import Button from "../button";
 
@@ -40,8 +42,94 @@ const Container = styled.div`
 
 const Heading = styled.h2``;
 
+const AdvancedFilters = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 10px;
+  border-left: 1px solid #d1d8dd;
+  border-right: 1px solid #d1d8dd;
+  border-bottom: 1px solid #d1d8dd;
+
+  @media (min-width: 750px) {
+    width: 80%;
+  }
+`;
+
+const Filters = styled.div``;
+
+const Sorting = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SortingField = styled.div`
+  position: relative;
+`;
+
+const SortingFieldLabel = styled.span`
+  font-size: 0.75em;
+  color: #8d99a6;
+  cursor: pointer;
+  margin-right: 10px;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
+const SortingOptions = styled.div`
+  position: absolute;
+  top: 25px;
+  right: 0;
+  width: 200px;
+  border: 1px solid #d1d8dd;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
+  background-color: #fbfbfb;
+  transform-origin: top right;
+`;
+
+const SortingOption = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding: 8px 12px;
+  font-size: 0.75em;
+  min-height: 50px;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  :hover {
+    color: #36414c;
+    background-color: #f0f4f7;
+  }
+`;
+
+const SortingOrder = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 3px;
+  background-color: #f0f4f7;
+  cursor: pointer;
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+  font-size: 0.8em;
+  path {
+    color: ${(props) => props.color || "unset"};
+  }
+`;
+
 const Table = styled.div`
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 220px);
   border-left: 1px solid #d1d8dd;
   border-right: 1px solid #d1d8dd;
 
@@ -59,7 +147,6 @@ const TableRow = styled.div`
   height: 40px;
   font-size: 0.75em;
   border-bottom: 1px solid #d1d8dd;
-  cursor: pointer;
 
   :first-child {
     background-color: #f7fafc;
@@ -136,7 +223,7 @@ const Message = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 191px);
+  height: calc(100vh - 260px);
 `;
 
 const Text = styled.span`
@@ -147,7 +234,7 @@ const Text = styled.span`
 
 const Buttons = styled.div`
   margin: 0 auto;
-  padding: 10px 10px;
+  padding: 12px 18px;
   border-left: 1px solid #d1d8dd;
   border-right: 1px solid #d1d8dd;
   border-bottom: 1px solid #d1d8dd;
@@ -158,6 +245,31 @@ const Buttons = styled.div`
   }
 `;
 
+const LimitButton = styled.button`
+  background-color: ${(props) => (props.active ? "#888888" : "#e3e7eb")};
+  color: ${(props) => (props.active ? "#fbfbfb" : "#888888")};
+  font-size: 0.75em;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: box-shadow 0.25s;
+  outline: 0;
+  margin: 0;
+
+  :hover {
+    box-shadow: inset 0 0 100px 100px rgba(0, 0, 0, 0.15);
+  }
+
+  :nth-child(1) {
+    border-radius: 3px 0 0 3px;
+  }
+  :nth-child(2) {
+    border-radius: 0;
+  }
+  :nth-child(3) {
+    border-radius: 0 3px 3px 0;
+  }
+`;
+
 const ListView = ({ match }) => {
   const doctype = match.params.doctype;
   const history = useHistory();
@@ -165,16 +277,19 @@ const ListView = ({ match }) => {
   const doctypeData = useSelector(selectDoctype(doctype));
   const doctypeFields = useSelector(selectDoctypeFields(doctype));
   const doctypeListFields = useSelector(selectDoctypeListFields(doctype));
+  const doctypeSortFields = useSelector(selectDoctypeSortFields(doctype));
   const doctypePermissions = useSelector(selectDoctypePermissions(doctype));
   const doctypeSearchFields = useSelector(selectDoctypeSearchFields(doctype));
   const documentData = useSelector(selectDocuments(doctype));
 
   const limit = useSelector(selectLimit(doctype));
-  const sort = useSelector(selectSort(doctype));
+  const sort_order = useSelector(selectSortOrder(doctype));
+  const sort_field = useSelector(selectSortField(doctype));
 
   const [state, setState] = useState(documentData);
   const [filters, setFilters] = useState({});
   const [selectedItems, setSelectedItems] = useState({});
+  const [showSortingOptions, setShowSortingOptions] = useState(false);
 
   const selectedItemsKeys = Object.keys(selectedItems);
   const areAllSelected =
@@ -190,7 +305,7 @@ const ListView = ({ match }) => {
 
   useEffect(() => {
     fetchDocuments();
-  }, [limit]);
+  }, [limit, sort_field.field_name, sort_order]);
 
   const redirectToForm = (e) => {
     const name = e.target.dataset.name;
@@ -210,7 +325,13 @@ const ListView = ({ match }) => {
       }, [])
       .join(",");
 
-    const query = { model: doctype, populate, limit, sort };
+    const query = {
+      model: doctype,
+      populate,
+      limit,
+      sort: `${sort_field.field_name} ${sort_order}`,
+    };
+
     dispatch(fetchDocumentsRequest(query));
   };
 
@@ -245,8 +366,7 @@ const ListView = ({ match }) => {
     fetchDocuments();
   };
 
-  const selectItem = (e) => {
-    const { index } = e.currentTarget.dataset;
+  const selectItem = (index) => {
     const newState = { ...selectedItems };
 
     if (newState[index]) {
@@ -271,8 +391,7 @@ const ListView = ({ match }) => {
     }
   };
 
-  const loadMore = (e) => {
-    const limit = Number(e.target.dataset.limit);
+  const loadMore = (limit) => {
     dispatch(setListLimit({ model: doctype, limit }));
   };
 
@@ -288,24 +407,41 @@ const ListView = ({ match }) => {
     /* setFilters({ ...filters, [name]: value }); */
   };
 
+  const changeSortOrder = () => {
+    const newOrder = sort_order === "asc" ? "desc" : "asc";
+    dispatch(setListSortOrder({ model: doctype, sort_order: newOrder }));
+  };
+
+  const changeSortField = (index) => {
+    const newField = doctypeSortFields[index];
+    dispatch(setListSortField({ model: doctype, sort_field: newField }));
+    shouldHideSortingOptions();
+  };
+
+  const shouldShowSortingOptions = () => {
+    setShowSortingOptions(true);
+  };
+
+  const shouldHideSortingOptions = () => {
+    setTimeout(() => {
+      setShowSortingOptions(false);
+    }, 150);
+  };
+
   return (
     <Container>
       <TopSection
         left={<Heading>{doctypeData.caption}</Heading>}
         right={
           selectedItemsKeys.length > 0 ? (
-            <Button bgColor="#e21515" color="#ffffff" onClick={deleteDocuments}>
+            <Button bgColor="#da003e" color="#fff" onClick={deleteDocuments}>
               Eliminar
             </Button>
           ) : (
             <>
               <Button onClick={fetchDocuments}>Refrescar</Button>
               {doctypePermissions.create && (
-                <Button
-                  bgColor="#4343e2"
-                  color="#ffffff"
-                  onClick={redirectToForm}
-                >
+                <Button bgColor="#0057a6" color="#fff" onClick={redirectToForm}>
                   Nuevo
                 </Button>
               )}
@@ -314,16 +450,57 @@ const ListView = ({ match }) => {
         }
       />
 
-      {/* <Filters /> */}
+      <AdvancedFilters>
+        <Filters>
+          <Button style={{ padding: "4px 8px" }} onClick={addFilter}>
+            Agregar Filtro
+          </Button>
+          <Button style={{ padding: "4px 8px" }} onClick={clearFilters}>
+            Quitar Filtros
+          </Button>
+        </Filters>
+
+        <Sorting>
+          <SortingField>
+            <SortingFieldLabel
+              onClick={shouldShowSortingOptions}
+              onBlur={shouldHideSortingOptions}
+              tabIndex={0}
+            >
+              {sort_field.label}
+            </SortingFieldLabel>
+            {showSortingOptions && (
+              <SortingOptions>
+                {doctypeSortFields.map((field, index) => (
+                  <SortingOption
+                    key={index}
+                    onClick={changeSortField.bind(null, index)}
+                  >
+                    {field.label}
+                  </SortingOption>
+                ))}
+              </SortingOptions>
+            )}
+          </SortingField>
+
+          <SortingOrder onClick={changeSortOrder}>
+            <Icon
+              icon={sort_order === "asc" ? "arrow-down" : "arrow-up"}
+              color="#999999"
+            />
+          </SortingOrder>
+        </Sorting>
+      </AdvancedFilters>
 
       <Table>
         <TableRow>
           <TableHeader>
             {doctypePermissions.delete && (
-              <StyledIcon
-                icon={areAllSelected ? "check-square" : "square"}
-                selected={areAllSelected}
-                onClick={selectAllItems}
+              <Input
+                field_name="check_all"
+                field_type="Check"
+                doc={{ check_all: areAllSelected }}
+                onChange={selectAllItems}
               />
             )}
           </TableHeader>
@@ -339,11 +516,11 @@ const ListView = ({ match }) => {
             <TableRow data-name={data.name}>
               <TableColumn>
                 {doctypePermissions.delete && (
-                  <StyledIcon
-                    icon={selectedItems[index] ? "check-square" : "square"}
-                    data-index={index}
-                    selected={selectedItems[index]}
-                    onClick={selectItem}
+                  <Input
+                    field_name={`check_${index}`}
+                    field_type="Check"
+                    doc={{ [`check_${index}`]: selectedItems[index] }}
+                    onChange={selectItem.bind(null, index)}
                   />
                 )}
               </TableColumn>
@@ -389,7 +566,7 @@ const ListView = ({ match }) => {
               </TableColumn>
 
               <TableColumn style={{ color: "#8d99a6", textAlign: "right" }}>
-                <Span>{timeSince(data.updated_at)}</Span>
+                <Span>{moment(data.updated_at).locale("es").fromNow()}</Span>
               </TableColumn>
             </TableRow>
           ))}
@@ -397,7 +574,7 @@ const ListView = ({ match }) => {
         {state.length === 0 ? (
           <Message>
             <Text>No se encontraron {doctypeData.caption.toLowerCase()}</Text>
-            <Button bgColor="#4343e2" color="#ffffff" onClick={redirectToForm}>
+            <Button bgColor="#0057a6" color="#fff" onClick={redirectToForm}>
               Crear Nuevo
             </Button>
           </Message>
@@ -405,30 +582,15 @@ const ListView = ({ match }) => {
       </Table>
 
       <Buttons>
-        <Button
-          onClick={loadMore}
-          bgColor={limit === 20 ? "#999999" : "#e3e7eb"}
-          color={limit === 20 ? "#fbfbfb" : "#555555"}
-          data-limit={20}
-        >
+        <LimitButton onClick={loadMore.bind(null, 20)} active={limit === 20}>
           20
-        </Button>
-        <Button
-          onClick={loadMore}
-          bgColor={limit === 100 ? "#999999" : "#e3e7eb"}
-          color={limit === 100 ? "#fbfbfb" : "#555555"}
-          data-limit={100}
-        >
+        </LimitButton>
+        <LimitButton onClick={loadMore.bind(null, 100)} active={limit === 100}>
           100
-        </Button>
-        <Button
-          onClick={loadMore}
-          bgColor={limit === 500 ? "#999999" : "#e3e7eb"}
-          color={limit === 500 ? "#fbfbfb" : "#555555"}
-          data-limit={500}
-        >
+        </LimitButton>
+        <LimitButton onClick={loadMore.bind(null, 500)} active={limit === 500}>
           500
-        </Button>
+        </LimitButton>
       </Buttons>
     </Container>
   );

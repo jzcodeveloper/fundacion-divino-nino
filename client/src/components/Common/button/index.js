@@ -9,7 +9,7 @@ const CustomButton = (props) => {
 
 CustomButton.defaultProps = {
   bgColor: "#f0f4f7",
-  color: "#555555",
+  color: "#888888",
 };
 
 export default CustomButton;

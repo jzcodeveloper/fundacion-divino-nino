@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { checkValidity } from "../../../../utils/utils";
 
 const Container = styled.div`
   grid-column: ${(props) => props.columns};
@@ -43,6 +44,7 @@ const PasswordInput = ({
   const [show, setShow] = useState(false);
   const [firstRender, setFirstRender] = useState(true);
   const [locked, setLocked] = useState(false);
+  const [validators] = useState({ required, ...props });
 
   useEffect(() => {
     const value = doc[field_name];
@@ -59,16 +61,11 @@ const PasswordInput = ({
   }, [doc[field_name]]);
 
   useEffect(() => {
-    if (required) {
-      if (state) {
-        inputRef.current.setCustomValidity("");
-        setValid(true);
-      } else {
-        inputRef.current.setCustomValidity("Este campo es requerido");
-        setValid(false);
-      }
-    } else {
-      setValid(true);
+    const [isValid, errorMessages] = checkValidity(state, validators);
+
+    if (isValid !== valid) {
+      inputRef.current.setCustomValidity(errorMessages.join("\n"));
+      setValid(isValid);
     }
   }, [state]);
 

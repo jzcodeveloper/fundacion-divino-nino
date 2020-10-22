@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import { checkValidity } from "../../../../utils/utils";
 
 const Container = styled.div`
   grid-column: ${(props) => props.columns};
@@ -32,9 +33,10 @@ const SelectInput = ({
   ...props
 }) => {
   const inputRef = useRef();
-  const [state, setState] = useState([]);
+  const [state, setState] = useState("");
   const [valid, setValid] = useState(true);
   const [locked, setLocked] = useState(false);
+  const [validators] = useState({ required, ...props });
 
   useEffect(() => {
     const value = doc[field_name];
@@ -51,16 +53,11 @@ const SelectInput = ({
   }, [doc[field_name]]);
 
   useEffect(() => {
-    if (required) {
-      if (state) {
-        inputRef.current.setCustomValidity("");
-        setValid(true);
-      } else {
-        inputRef.current.setCustomValidity("Este campo es requerido");
-        setValid(false);
-      }
-    } else {
-      setValid(true);
+    const [isValid, errorMessages] = checkValidity(state, validators);
+
+    if (isValid !== valid) {
+      inputRef.current.setCustomValidity(errorMessages.join("\n"));
+      setValid(isValid);
     }
   }, [state]);
 

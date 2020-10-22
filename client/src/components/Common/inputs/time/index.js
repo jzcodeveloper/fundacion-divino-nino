@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { time } from "../../../../utils/utils";
+import moment from "moment";
+import { checkValidity } from "../../../../utils/utils";
 
 const Container = styled.div`
   grid-column: ${(props) => props.columns};
@@ -23,8 +24,8 @@ const TimeInput = ({
   field_name,
   label,
   onChange,
-  required,
   read_only,
+  required,
   set_only_once,
   ...props
 }) => {
@@ -35,8 +36,10 @@ const TimeInput = ({
   const [locked, setLocked] = useState(false);
 
   useEffect(() => {
-    const value = time(doc[field_name], "hh:mm");
-    const defaultValue = props.default ? time(new Date(), "hh:mm") : "";
+    const value = moment(doc[field_name]).format("hh:mm");
+    const defaultValue = props.default
+      ? moment(new Date()).format("hh:mm")
+      : "";
 
     if (set_only_once && value !== defaultValue && !locked) {
       setLocked(true);
@@ -48,16 +51,13 @@ const TimeInput = ({
   }, [doc[field_name]]);
 
   const onLocalChange = (e) => {
-    const [hours, minutes] = e.target.value.split(":");
-    const date = new Date().setHours(hours, minutes);
-    const value = time(date, "hh:mm");
-    setState(value);
+    setState(e.target.value);
   };
 
   const onBlur = (e) => {
     const [hours, minutes] = state.split(":");
     const date = new Date().setHours(hours, minutes);
-    onChange(idx, field_name, date);
+    onChange(idx, field_name, new Date(date));
   };
 
   return (

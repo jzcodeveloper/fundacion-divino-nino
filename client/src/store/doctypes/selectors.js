@@ -65,6 +65,22 @@ export const selectDoctypeSearchFields = (doctype) =>
     );
   });
 
+export const selectDoctypeSortFields = (doctype) =>
+  createSelector([selectDoctypeFields(doctype)], (fields) => {
+    const mainFields = fields.filter(
+      ({ field_type }) =>
+        field_type !== "Link" &&
+        field_type !== "Table" &&
+        field_type !== "Table Link"
+    );
+    mainFields.push({ field_name: "name", label: "Nombre" });
+    mainFields.push({ field_name: "created_at", label: "Creado El" });
+    mainFields.push({ field_name: "created_by", label: "Creado Por" });
+    mainFields.push({ field_name: "updated_at", label: "Actualizado El" });
+    mainFields.push({ field_name: "updated_by", label: "Actualizado Por" });
+    return mainFields;
+  });
+
 export const selectAllowedDoctypes = createSelector(
   [selectMainDoctypes, selectUserRole],
   (doctypes, role) => {

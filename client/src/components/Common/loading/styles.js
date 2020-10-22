@@ -19,8 +19,8 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100px;
+  height: 100px;
   @media (min-width: 450px) {
-    width: 100px;
+    height: 150px;
   }
 `;

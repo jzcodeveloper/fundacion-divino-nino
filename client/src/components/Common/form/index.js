@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { cloneDeep } from "lodash";
-import { date } from "../../../utils/utils";
 
 import {
   selectDoctype,
@@ -121,9 +120,7 @@ const FormView = ({ location }) => {
           acc[field_name] = val.default === "true" ? true : false;
         } else if (field_type === "Link" || field_type === "Table Link") {
           acc[field_name] = {};
-        } else if (field_type === "Date") {
-          acc[field_name] = val.default ? date(new Date(), "yyyy-mm-dd") : "";
-        } else if (field_type === "Time") {
+        } else if (field_type === "Date" || field_type === "Time") {
           acc[field_name] = val.default ? new Date() : "";
         } else if (field_type === "Table") {
           acc[field_name] = [];
@@ -142,7 +139,7 @@ const FormView = ({ location }) => {
   }, [documentData]);
 
   const onChange = (index, name, value) => {
-    const newState = { ...state };
+    const newState = cloneDeep(state);
 
     // Works for date, number, password, text, textarea and link inputs
     newState[name] = value;
@@ -241,20 +238,12 @@ const FormView = ({ location }) => {
         right={
           <>
             {isNew && doctypePermissions.create && (
-              <Button
-                bgColor="#4343e2"
-                color="#ffffff"
-                onClick={submitDocument}
-              >
+              <Button bgColor="#0057a6" color="#fff" onClick={submitDocument}>
                 Crear
               </Button>
             )}
             {!isNew && doctypePermissions.update && (
-              <Button
-                bgColor="#4343e2"
-                color="#ffffff"
-                onClick={submitDocument}
-              >
+              <Button bgColor="#0057a6" color="#fff" onClick={submitDocument}>
                 Guardar
               </Button>
             )}

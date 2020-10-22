@@ -1,6 +1,6 @@
 import React from "react";
 
-import AppIcon from "../../../assets/icons/app-icon-512x512.png";
+import AppIcon from "../../../assets/images/logo.png";
 
 import { Modal, Container, Image, Paragraph } from "./styles";
 

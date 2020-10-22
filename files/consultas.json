@@ -1,170 +1,170 @@
 [
   {
     "item_name": "Biopsia",
-    "total": 20,
+    "price": 20,
     "practitioner_payroll": 0,
     "foundation_payroll": 20,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Citologías Externas",
-    "total": 5,
+    "price": 5,
     "practitioner_payroll": 0,
     "foundation_payroll": 5,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Cardiología",
-    "total": 12,
+    "price": 12,
     "practitioner_payroll": 10,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Cirugía",
-    "total": 12,
+    "price": 12,
     "practitioner_payroll": 10,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Gastroenterología",
-    "total": 12,
+    "price": 12,
     "practitioner_payroll": 10,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Ginecología - Cauterización",
-    "total": 20,
+    "price": 20,
     "practitioner_payroll": 12,
     "foundation_payroll": 8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Ginecología - Citología de Secreción Mamaria",
-    "total": 15,
+    "price": 15,
     "practitioner_payroll": 9,
     "foundation_payroll": 6,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Ginecología - Citología - Colposcopia",
-    "total": 20,
+    "price": 20,
     "practitioner_payroll": 12,
     "foundation_payroll": 8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Ginecología - Colocación de Aparato",
-    "total": 20,
+    "price": 20,
     "practitioner_payroll": 12,
     "foundation_payroll": 8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Ginecología - Ecograma",
-    "total": 12,
+    "price": 12,
     "practitioner_payroll": 7.2,
     "foundation_payroll": 4.8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Ginecología - Obstetricia",
-    "total": 6,
+    "price": 6,
     "practitioner_payroll": 3.6,
     "foundation_payroll": 2.4,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Medicina Interna",
-    "total": 5,
+    "price": 5,
     "practitioner_payroll": 3,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Nefrología",
-    "total": 12,
+    "price": 12,
     "practitioner_payroll": 10,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Neumología",
-    "total": 8,
+    "price": 8,
     "practitioner_payroll": 6,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Neumología - Espirometría",
-    "total": 12,
+    "price": 12,
     "practitioner_payroll": 10,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Nutrición",
-    "total": 5,
+    "price": 5,
     "practitioner_payroll": 3,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Pediatría",
-    "total": 5,
+    "price": 5,
     "practitioner_payroll": 3,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Psicología",
-    "total": 5,
+    "price": 5,
     "practitioner_payroll": 3,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Psicología Pareja - Familia",
-    "total": 8,
+    "price": 8,
     "practitioner_payroll": 4.8,
     "foundation_payroll": 3.2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Traumatología",
-    "total": 5,
+    "price": 5,
     "practitioner_payroll": 3,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Consulta de Urología",
-    "total": 15,
+    "price": 15,
     "practitioner_payroll": 12,
     "foundation_payroll": 3,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Espirometría",
-    "total": 6,
+    "price": 6,
     "practitioner_payroll": 5,
     "foundation_payroll": 1,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Régimen de Nutrición",
-    "total": 5,
+    "price": 5,
     "practitioner_payroll": 3,
     "foundation_payroll": 2,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   },
   {
     "item_name": "Toma de Muestra de Biopsia",
-    "total": 20,
+    "price": 20,
     "practitioner_payroll": 12,
     "foundation_payroll": 8,
-    "currency": "5ee07a55dfda110a644c0c42"
+    "currency": "5f230ee24f8edc0374eeb54e"
   }
 ]
