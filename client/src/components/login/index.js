@@ -47,7 +47,10 @@ const Form = styled.form`
 const Auth = () => {
   const formRef = useRef();
   const dispatch = useDispatch();
-  const [state, setState] = useState({ username: "", password: "" });
+  const [state, setState] = useState({
+    username: "Administrador",
+    password: "admin",
+  });
 
   const onChange = (name, value) => {
     setState({ ...state, [name]: value });
