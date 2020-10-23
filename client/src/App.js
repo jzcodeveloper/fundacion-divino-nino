@@ -6,7 +6,7 @@ import { selectLoading } from "./store/doctypes/selectors";
 
 import ErrorBoundary from "./components/common/error_boundary";
 import Loading from "./components/common/loading";
-import Routes from "./hoc/routes/index.js";
+import Routes from "./hoc/routes";
 
 const App = () => {
   const dispatch = useDispatch();
