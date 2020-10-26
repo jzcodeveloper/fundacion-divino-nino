@@ -1,4 +1,4 @@
-const Counter = require("../models/Counter");
+const Counter = require("../models/counter");
 
 exports.getSeries = async (_id) => {
   const query = { _id };
