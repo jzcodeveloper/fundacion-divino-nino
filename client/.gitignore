@@ -9,7 +9,6 @@
 /coverage
 
 # production
-/src/assets/gifs/machine-learning-original.gif
 
 # misc
 .DS_Store
